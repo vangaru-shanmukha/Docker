@@ -20,7 +20,7 @@ public class HelloController {
     public String index1() {
         System.out.println("change6");
         System.out.println("change6");
-        System.out.println("change6");
+        System.out.println("change7");
         return text + "hello from Shanmukha!";
     }
     
