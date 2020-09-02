@@ -15,5 +15,10 @@ public class HelloController {
     public String index() {
         return text + " from Shanmukha!";
     }
+
+    @RequestMapping("/hello")
+    public String index1() {
+        return text + "hello from Shanmukha!";
+    }
     
 }
