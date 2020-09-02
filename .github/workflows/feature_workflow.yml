@@ -23,4 +23,6 @@ jobs:
     - name: Build with Maven
       run: cd Docker && mvn -B clean package -DskipTests
     - name: Maven Verify
+      env:
+        TEXT: ${{secrets.TEXT}} 
       run: cd Docker && mvn -B clean verify
