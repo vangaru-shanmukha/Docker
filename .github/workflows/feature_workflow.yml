@@ -4,8 +4,8 @@
 name: Java CI
 
 on:
-  push:
-    branches: CI/CD_Pipeline
+#   push:
+#     branches: CI/CD_Pipeline
   pull_request:
     branches: master
 
