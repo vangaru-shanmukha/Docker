@@ -23,7 +23,7 @@ jobs:
     - name: Build with Maven
       env:
         TEXT: ${{ secrets.TEXT }}
-      run: cd Docker && mvn -B package --file pom.xml
+      run: cd Docker && mvn -B package --file pom.xml && ls
 #     - name: Maven Verify
 #       env:
 #         TEXT: ${{ secrets.TEXT }}
