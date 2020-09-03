@@ -12,8 +12,14 @@ pipeline {
             }
         }
         stage('Test') {
+            environmnet {
+                TEXT= "hello"
+            }
             steps {
-                sh 'mvn test'
+                dir("Docker") {
+                    sh 'ls'
+                    sh 'mvn test'
+                }
             }
         }
     }
