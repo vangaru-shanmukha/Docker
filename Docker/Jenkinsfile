@@ -22,9 +22,11 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Build after merge') {
             when {
-                branch: 'master'
+                allOf {
+                    branch 'master'
+                }
             }
             steps {
                 sh 'pwd'
