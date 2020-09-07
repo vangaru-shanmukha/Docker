@@ -4,7 +4,6 @@ pipeline {
         stage('Build') {
             when {
                 expression {
-                    sh 'echo ' + params.current_status
                     return params.current_status == "opened" && params.merged == null
                 }
             }
