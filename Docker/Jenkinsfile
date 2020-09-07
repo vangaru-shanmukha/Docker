@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { params.current_status == "opened" }
+                sh 'echo ' + env.current_status
+                expression { env.current_status == "opened" }
             }
             steps {
                 sh 'pwd'
