@@ -18,7 +18,7 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String index1() {
-        System.out.println("change21");
+        System.out.println("change22");
         return text + "hello from Shanmukha!";
     }
     
