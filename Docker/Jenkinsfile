@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { return env.current_status == "opened" && env.merged == false}
+                expression { return env.current_status == "opened" && env.merged == "false"}
             }
             steps {
                 sh 'pwd'
@@ -31,7 +31,7 @@ pipeline {
         stage('Build after merge') {
             when {
                 expression {
-                    return env.current_status == "closed" && env.merged == true
+                    return env.current_status == "closed" && env.merged == "true"
                 }
             }
             steps {
