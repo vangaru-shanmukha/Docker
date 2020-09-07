@@ -1,7 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
+        stage('Build') {
+            when {
+                expression {
+                    return params.current_status == "open" && params.merged == false
+                }
+            }
             steps {
                 sh 'pwd'
                 sh 'ls'
@@ -12,6 +17,11 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                expression {
+                    return params.current_status == "open" && params.merged == false
+                }
+            }
             environment {
                 TEXT= "hello"
             }
