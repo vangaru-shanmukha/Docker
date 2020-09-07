@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { env.current_status == "opened" }
+                expression { env.current_status == "opened" && env.merged == false}
             }
             steps {
                 sh 'pwd'
@@ -16,9 +16,7 @@ pipeline {
         }
         stage('Test') {
             when {
-                expression {
-                    ${current_status} == "opened"
-                }
+                expression { env.current_status == "opened" && env.merged == false}
             }
             environment {
                 TEXT= "hello"
@@ -32,13 +30,13 @@ pipeline {
         }
         stage('Build after merge') {
             when {
-                allOf {
-                    branch 'master'
+                expression {
+                    return env.current_status == "opened" && env.merged == true }
                 }
             }
             steps {
                 sh 'pwd'
-                sh 'ls'
+                sh 'echo "Build after merge"'
                 dir("Docker") {
                     sh 'ls'
                     sh 'mvn -B -DskipTests clean package'
