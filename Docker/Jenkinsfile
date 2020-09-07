@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'pwd'
+                sh 'ls'
+                dir("Docker") {
+                    sh 'ls'
+                    sh 'mvn -B -DskipTests clean package' 
+                }
+            }
+        }
+        stage('Test') {
+            environment {
+                TEXT= "hello"
+            }
+            steps {
+                dir("Docker") {
+                    sh 'ls'
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('Build after merge') {
+            when {
+                allOf {
+                    branch 'master'
+                }
+            }
+            steps {
+                sh 'pwd'
+                sh 'ls'
+                dir("Docker") {
+                    sh 'ls'
+                    sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }
+    }
+}

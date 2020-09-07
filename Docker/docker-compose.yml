@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  springboot:
+    build: .
+    container_name: hello_docker1
+    image: hello_docker1
+    environment:
+      TEXT: hello
+    ports:
+    - 8080:8080
