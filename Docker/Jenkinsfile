@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                print "params" + params.current_status
-                print "params ${params.current_status}"
                 expression { env.current_status == "opened" }
             }
             steps {
@@ -19,7 +17,7 @@ pipeline {
         stage('Test') {
             when {
                 expression {
-                    return params.current_status == "opened"
+                    ${current_status} == "opened"
                 }
             }
             environment {
