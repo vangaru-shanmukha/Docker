@@ -31,7 +31,7 @@ pipeline {
         stage('Build after merge') {
             when {
                 expression {
-                    return env.current_status == "opened" && env.merged == true }
+                    return env.current_status == "opened" && env.merged == true
                 }
             }
             steps {
