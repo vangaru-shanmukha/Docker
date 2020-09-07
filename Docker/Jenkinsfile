@@ -1,7 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
+        stage('Build') {
+            when {
+                expression { return env.current_status == "opened" && env.merged == false}
+            }
             steps {
                 sh 'pwd'
                 sh 'ls'
@@ -12,6 +15,9 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                expression { return env.current_status == "opened" && env.merged == false}
+            }
             environment {
                 TEXT= "hello"
             }
@@ -24,13 +30,13 @@ pipeline {
         }
         stage('Build after merge') {
             when {
-                allOf {
-                    branch 'master'
+                expression {
+                    return env.current_status == "opened" && env.merged == true
                 }
             }
             steps {
                 sh 'pwd'
-                sh 'ls'
+                sh 'echo "Build after merge"'
                 dir("Docker") {
                     sh 'ls'
                     sh 'mvn -B -DskipTests clean package'
