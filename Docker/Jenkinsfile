@@ -4,7 +4,8 @@ pipeline {
         stage('Build') {
             when {
                 expression {
-                    return params.current_status == "open" && params.merged == null
+                    sh 'echo ' + params.current_status
+                    return params.current_status == "opened" && params.merged == null
                 }
             }
             steps {
@@ -19,7 +20,7 @@ pipeline {
         stage('Test') {
             when {
                 expression {
-                    return params.current_status == "open" && params.merged == null
+                    return params.current_status == "opened" && params.merged == null
                 }
             }
             environment {
