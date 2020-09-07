@@ -22,5 +22,18 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            when {
+                branch: 'master'
+            }
+            steps {
+                sh 'pwd'
+                sh 'ls'
+                dir("Docker") {
+                    sh 'ls'
+                    sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }
     }
 }
