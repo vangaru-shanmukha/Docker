@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { env.current_status == "opened" && env.merged == false}
+                expression { return env.current_status == "opened" && env.merged == false}
             }
             steps {
                 sh 'pwd'
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Test') {
             when {
-                expression { env.current_status == "opened" && env.merged == false}
+                expression { return env.current_status == "opened" && env.merged == false}
             }
             environment {
                 TEXT= "hello"
